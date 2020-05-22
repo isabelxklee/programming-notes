@@ -21,12 +21,12 @@ state = {
 ```
 componentdidMount() {
 	fetch(URL)
-    .then(r => r.json())
-    .then((allLists) => {
-        this.setState({
-            masterList: allLists
-        })
+  .then(r => r.json())
+  .then((allLists) => {
+    this.setState({
+      masterList: allLists
     })
+  })
 }
 ```
 
@@ -37,10 +37,10 @@ Let's see how we can handle events inside a functional component.
 ```
 const SearchBar = () => {
 	return (
-        <div className="searchbar">
-        <input type="text" name="searchTerm">
-        </div>
-    )
+    <div className="searchbar">
+    <input type="text" name="searchTerm">
+    </div>
+  )
 }
 
 ```
@@ -52,12 +52,12 @@ State is the single source of truth for our application.
 ```
 const SearchBar = () => {
 	...
-    <input
-        type="text"
-        name="searchTerm"
-        value={}
-        onChange={}
-    />
+  <input
+    type="text"
+    name="searchTerm"
+    value={}
+    onChange={}
+  />
 }
 ```
 * Inputs always use `onChange` to document the user's input.
@@ -68,10 +68,10 @@ const SearchBar = () => {
 
 ```
 class App extends Component {
-    state = {
-        masterList: [],
-        searchTerm: "Oscar"
-	}
+  state = {
+    masterList: [],
+    searchTerm: "Oscar"
+  }
 }
 
 render() {
@@ -83,12 +83,12 @@ The keyword `this` cannot be accessed inside a functional component.
 ```
 const SearchBar = () => {
 	...
-    <input
-        type="text"
-        name="searchTerm"
-        value={props.searchTerm}
-        onChange={}
-    />
+  <input
+    type="text"
+    name="searchTerm"
+    value={props.searchTerm}
+    onChange={}
+  />
 }
 ```
 Find a way to update the search term from `App.js`. Create an event listener for it.

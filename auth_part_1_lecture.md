@@ -53,19 +53,19 @@ Write the model actions in their controllers.
 ```
 class UsersController < ApplicationController
 	def create
-    	@user = User.create(user_params)
-    	if @user.valid?
-        	render json: @user, status: :201
-        else
-        	render json: {message: "Failed to create a new user"}, status: :500
-        end
+    @user = User.create(user_params)
+    if @user.valid?
+      render json: @user, status: :201
+    else
+      render json: {message: "Failed to create a new user"}, status: :500
     end
+  end
     
-    private
-    
-    def user_params
-    	params.permit(:username, :password)
-    end
+  private
+  
+  def user_params
+    params.permit(:username, :password)
+  end
 end
 ```
 
@@ -87,10 +87,10 @@ App.js
 
 state = {
 	user: {
-    	id: 0,
-        username: "",
-        snacks: []
-    }
+    id: 0,
+    username: "",
+    snacks: []
+  }
 }
 ```
 
@@ -101,18 +101,18 @@ App.js
 
 handleRegistration = (userInfo) => {
 	fetch("/users", {
-    	method: "POST",
-        ...
-        body: JSON.stringify(userInfo)
+    method: "POST",
+      ...
+      body: JSON.stringify(userInfo)
     })
-    .then(r => r.json())
-    .then((response) => {
-    	if (response.id) {
-        	this.setState({
-            	user: response
-            })
-        }
-    })
+  .then(r => r.json())
+  .then((response) => {
+    if (response.id) {
+      this.setState({
+          user: response
+      })
+    }
+  })
 }
 ```
 

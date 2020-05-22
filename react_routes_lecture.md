@@ -68,8 +68,8 @@ Wrap all the other Route components with the Switch component.
 ```
 <Switch>
 	<Route path="/" exact component={Home} />
-    ...
-    <Route component={NotFound} />
+  ...
+  <Route component={NotFound} />
 </Switch>
 ```
 URLs that don't exist will automatically render the NotFound component.
@@ -121,17 +121,17 @@ render() {
 	let componentArray = this.state.characters.map((character) => {
     return
     	<li key={character.id}
-            <NavLink to={`/characters/${character.slug}`}>
-            </NavLink>
-        </li>
+        <NavLink to={`/characters/${character.slug}`}>
+        </NavLink>
+      </li>
     })
 	return (
     ...
     <ul>
     	<li>
-        	<NavLink to="/" exact >Home</NavLink>
-        </li>
-        { componentArray }
+        <NavLink to="/" exact >Home</NavLink>
+      </li>
+      { componentArray }
     </ul>
     ...
     )

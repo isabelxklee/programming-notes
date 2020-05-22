@@ -7,7 +7,7 @@ Takes in a hash, which stores user information, and returns a unique token.
 
 ```
 {
-	"id": 1
+  "id": 1
 }
 
 => eyasdfklIFJDSLIFKDFJ.slkjeiwf.SKDJKlkdfd

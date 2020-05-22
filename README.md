@@ -1,1 +1,1 @@
-# Programming Notes
+# Programming Lecture Notes

@@ -72,12 +72,12 @@ Then create a helper method that checks if there's a message key or not. Validat
 ```
 handleResponse = (r) => {
   if (r.message) {
-      alert(r.message)
-    } else {
-      this.setState(r, () => {
-          this.props.history.push("/profile")
-      })
-    }
+    alert(r.message)
+  } else {
+    this.setState(r, () => {
+      this.props.history.push("/profile")
+    })
+  }
 }
 ```
 The response is an object and setState() takes in an object. Serializers help us accomplish this. If we don't match our state to our response, we're going to have to play a guessing game to see which state matches which response.
@@ -96,10 +96,10 @@ App.js
 
 renderProfile = (routerProps) => {
   if (this.state.token) {
-        return <ProfileContainer />
-    } else if (routerProps.location.pathname === "/register") {
+    return <ProfileContainer />
+  } else if (routerProps.location.pathname === "/register") {
     // do something else
-    }
+  }
 }
 ```
 
@@ -119,11 +119,11 @@ Save the new cookies to localStorage. Once a response comes back in the frontend
 ```
 handleResponse = (r) => {
   if (r.message) {
-      alert(r.message)
-        localStorage.token = r.token
-    } else {
-      ...
-    }
+    alert(r.message)
+    localStorage.token = r.token
+  } else {
+    ...
+  }
 }
 ```
 
@@ -165,9 +165,9 @@ In the Application controller, create methods for authorization.
 ```
 def logged_in_user
   if decoded_token
-      user_id = decoded_token[0].token
-      @user = User.find_by(id: user_id)
-    end
+    user_id = decoded_token[0].token
+    @user = User.find_by(id: user_id)
+  end
 end 
 
 def authorized

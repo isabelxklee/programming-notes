@@ -179,4 +179,3 @@ Before any methods are executed, check to see if a user's logged in.
 ```
 before_action :authorized, only: [:stay_logged_in]
 ```
-

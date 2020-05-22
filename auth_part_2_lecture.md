@@ -37,7 +37,7 @@ JWT.decode(wristband, "abc123")
 Go to the Application controller in the Rails backend. Create a method for encoding a token.
 ```
 def encode_token(payload)
-	JWT.encode(payload, "abc123")
+  JWT.encode(payload, "abc123")
 end
 ```
 
@@ -45,12 +45,12 @@ Go to the User controller. Add the encode token method to the login method. Send
 
 ```
 def login
-    ...
-    wristband = encode_token({user_id: @user.id})
-    render json: {
-    user: UserSerializer.new(@user),
-    token: wristband
-    }
+  ...
+  wristband = encode_token({user_id: @user.id})
+  render json: {
+  user: UserSerializer.new(@user),
+  token: wristband
+  }
 end
 ```
 
@@ -58,7 +58,7 @@ end
 Go to `App.js` and Update the state to include a token key.
 ```
 state = {
-	user: {
+  user: {
     id: "",
     username: ""
     snacks: []
@@ -71,12 +71,12 @@ Then create a helper method that checks if there's a message key or not. Validat
 
 ```
 handleResponse = (r) => {
-	if (r.message) {
-    	alert(r.message)
+  if (r.message) {
+      alert(r.message)
     } else {
-    	this.setState(r, () => {
-        	this.props.history.push("/profile")
-        })
+      this.setState(r, () => {
+          this.props.history.push("/profile")
+      })
     }
 }
 ```
@@ -95,7 +95,7 @@ Check to see if the token exists by creating a boolean function. This will valid
 App.js
 
 renderProfile = (routerProps) => {
-	if (this.state.token) {
+  if (this.state.token) {
         return <ProfileContainer />
     } else if (routerProps.location.pathname === "/register") {
     // do something else
@@ -118,11 +118,11 @@ Save the new cookies to localStorage. Once a response comes back in the frontend
 
 ```
 handleResponse = (r) => {
-	if (r.message) {
-    	alert(r.message)
+  if (r.message) {
+      alert(r.message)
         localStorage.token = r.token
     } else {
-   		...
+      ...
     }
 }
 ```
@@ -133,14 +133,14 @@ Any time you want to send a token to the backend, it should be done in the heade
 GET request
 ```
 componentDidMount() {
-	if (localStorage.token) {
-    	fetch("http://localhost:4000/users/stay_logged_in", {
-            headers: {
-                "Authorization": localStorage.token
-            }
-        })
-        .then(r => r.json())
-        .then(this.handleResponse)
+  if (localStorage.token) {
+    fetch("http://localhost:4000/users/stay_logged_in", {
+      headers: {
+        "Authorization": localStorage.token
+      }
+    })
+    .then(r => r.json())
+    .then(this.handleResponse)
     }
 }
 ```
@@ -156,7 +156,7 @@ def stay_logged_in
 	wristband = encode_token({user_id: @user.id})
     render json: {
     	user: UserSerializer.new(@user),
-        token: wristband
+      token: wristband
     }
 end
 ```
@@ -164,9 +164,9 @@ end
 In the Application controller, create methods for authorization.
 ```
 def logged_in_user
-	if decoded_token
-    	user_id = decoded_token[0].token
-		@user = User.find_by(id: user_id)
+  if decoded_token
+      user_id = decoded_token[0].token
+      @user = User.find_by(id: user_id)
     end
 end 
 

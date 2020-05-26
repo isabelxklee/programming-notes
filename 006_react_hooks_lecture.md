@@ -56,4 +56,12 @@ return (
 ```
 
 ### Hooks vs. Class component states
-States can have any data type, whereas state in a class component has to be a JavaScript object that includes key: value pairs.
+States in functional component hooks can include any data type, whereas state in a class component has to be an object that includes key: value pairs.
+
+### Lifecycle methods
+`componentDidMount()` will only run once if there isn't a `componentWillUnmount()` in the application.
+
+Import `useEffect` from React. This will allow us to have lifecycle methods in a functional component.
+```
+import React, {useState, useEffect} from 'react'
+```

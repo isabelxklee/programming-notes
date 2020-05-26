@@ -65,3 +65,17 @@ Import `useEffect` from React. This will allow us to have lifecycle methods in a
 ```
 import React, {useState, useEffect} from 'react'
 ```
+
+Create a `useEffect()` method. If you try to change the state inside this method, it will run forever. This is because it runs whenever the app updates and changing the state is an update.
+
+Example:
+```
+useEffect(() => {
+  console.log("hello")
+  setState(["Goodbye"])
+})
+```
+
+This will log `"hello"` to the console a million times.
+
+To avoid this, we need to add a second argument when calling `useEffect()`.

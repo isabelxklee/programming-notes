@@ -136,3 +136,33 @@ const handleChange = (event) => {
   })
 }
 ```
+
+The juice is not worth the squeeze though. Try to stick to the previous way of setting the state.
+
+### POST request
+Create an add list function in `App.js`. Pass it down as props to the form.
+```
+const addList = (newList) => {
+  let copyOfMasterList = [...masterList, newList]
+  setMasterList(copyOfMasterList)
+}
+```
+
+Navigate back to `Form.js` and write a handle submit function. Call the add list function as props in the second `.then` statement to add the new list to an existing master list.
+```
+const handleSubmit = (event) => {
+  event.preventDefault()
+  let copyOfList = {
+    list_name
+  }
+  fetch(URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(copyOfList)
+  })
+  .then(r => r.json())
+  .then(props.addList)
+}
+```

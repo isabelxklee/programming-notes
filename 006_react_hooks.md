@@ -166,3 +166,6 @@ const handleSubmit = (event) => {
   .then(props.addList)
 }
 ```
+
+### Conclusion
+At the end of the day, functional components are just JavaScript functions. It's a function that expects an argument of props.

@@ -1,6 +1,3 @@
-### Note from Eric
-If you can build out the mock application from `reactjs.org/docs/thinking-in-react.html`, you'll be ready for the mod 4 code challenge.
-
 ### What is a component?
 * Fundamental building block for React applications
 * Collection of HTML

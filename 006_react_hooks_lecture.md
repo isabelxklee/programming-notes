@@ -96,3 +96,43 @@ useEffect(() => {
   })
 }, [])
 ```
+The callback gets run every time something in the array of dependencies changes. If the array is empty, it acts as `componentDidMount()`.
+
+
+### Using hooks with forms
+If you have multiple inputs, use multiple instances of `useState()`.
+
+```
+let [objState, setObjState] = useState({
+  list_name: "Worst Oscar Winning Movies"
+})
+
+const handleChange = (event) => {
+  setObjState({
+    ...objState,
+    [event.target.name]: event.target.value
+  })
+}
+
+return (
+  <form onSubmit={handleSubmit}>
+    <input
+      type="text"
+      name="list_name"
+      value={objState.list_name}
+      onChange={handleChange}
+    />
+  </form>
+)
+```
+
+`setObjState()` can also take in a callback function. If we want the function to be asynchronous, we'll have to call `persist()` on the event object.
+
+```
+const handleChange = (event) => {
+  event.persist()
+  setObjState((prevState) => {
+    return {...prevState, list_name: event.target.value}
+  })
+}
+```

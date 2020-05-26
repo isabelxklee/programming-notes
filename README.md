@@ -1,4 +1,4 @@
-# Programming Lecture Notes
+# Programming Notes
 * Intro to react
 * React lifecycle
 * React routes

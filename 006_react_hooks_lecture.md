@@ -78,4 +78,21 @@ useEffect(() => {
 
 This will log `"hello"` to the console a million times.
 
-To avoid this, we need to add a second argument when calling `useEffect()`.
+To avoid this, we need to add a second argument when calling `useEffect()`. This time, the method will only run once and `setState` will successfully alter the state.
+```
+useEffect(() => {
+  console.log("hello")
+  setState(["Goodbye"])
+}, [])
+```
+
+Work it into something usable and make a fetch request inside the body. We can't use `componentDidMount()` to make the fetch request becuase we're inside a functional component. We can't use any methods that have the keyword `component` in it.
+```
+useEffect(() => {
+  fetch(URL)
+  .then(r => r.json())
+  .then((newArr) => {
+    setState(newArr)
+  })
+}, [])
+```

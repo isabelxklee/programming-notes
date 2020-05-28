@@ -1,4 +1,4 @@
-# Intro to Redux
+# Intro to Redux Part 1
 Redux is an independent JavaScript library from React, but they go hand-in-hand. Redux helps manage application state by creating a global state object.
 
 ## Problems with React

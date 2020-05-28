@@ -33,5 +33,55 @@ Run `create-react-app [APP_NAME]` in the terminal.
 
 Install Redux. Run `npm install redux` inside the project directory.
 
-Navigate to `index.js`.
+Navigate to `index.js` and import the `createStore()` function from Redux.
+```
+import { createStore } from 'redux'
+```
 
+Save the return value from `createStore()` as a variable. Create a reducer function and pass it into `createStore()` as an argument.
+```
+let reducer = (state, action) => {
+  return {
+    counter: 3
+  }
+}
+
+let store = createStore(reducer)
+```
+
+If we run `console.log(store.getState())`, it'll return `{counter: 3}`.
+
+Create an action that will tell the reducer what to do.
+```
+let action = {
+  type: "ADD_TO_COUNTER",
+  payload: 7
+}
+```
+
+Dispatch the action to run the reducer and update the state.
+```
+store.dispatch(action)
+```
+
+## Refactor the reducer
+Re-write the reducer function using a switch statement. Create an initial state and set it as a default for the state argument.
+
+```
+let initialState = {
+  counter: 9
+}
+
+let reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case "ADD_TO_COUNTER":
+      let newNumber = state.counter + action.payload
+      return {
+        ...state,
+        counter: newNumber
+      }
+    default:
+      return state
+  }
+}
+```

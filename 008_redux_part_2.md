@@ -77,10 +77,53 @@ let mapStateToProps = (globalState) => {
 
 Update the return value of PetsContainer to include the function.
 ```
-let array = props.allPets.map((pet) => {
-  return <Pet key={pet.id} pet={pet}>
-})
+const PetsContainer = (props) => {
+  let array = props.allPets.map((pet) => {
+    return <Pet key={pet.id} pet={pet}>
+  })
+}
+
+...
+
+// mapStateToProps() is defined here
+// magicalFunc and magicalComp is also defined down here
 ```
 
 ## Sending down the global state as props
-Navigate to `Pet.js`.
+Navigate to `Pet.js`. Access the state from PetsContainer by passing it down as regular props.
+
+```
+props.pet
+```
+
+Navigate to `PetForm.js`. Import the `connect` function and then write it as the export default. We can pass in null as the first argument because it doesn't need to read any values from the global state. It only wants to set new information.
+
+```
+import {connect} from 'react-redux'
+
+...
+
+export default connect(null)(PetForm)
+```
+
+Write a function that returns a JavaScript object.
+```
+let addPet = (singlePet) => {
+  return {
+    type: "ADD_ONE_PET",
+    payload: singlePet
+  }
+}
+```
+
+Define a JavaScript object that will be passed in as the second argument to `connect()`. This lets us dispatch an action to our reducer.
+```
+let mapDispatch = {
+  propsAddPet: addPet
+}
+
+export default connect(null, mapDispatch)(PetForm)
+```
+
+We can also write it in one line.
+`export default connect(null, {addPet})(PetForm)`

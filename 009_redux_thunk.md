@@ -1,4 +1,4 @@
-# Redux Thunk
+# Redux Combined Reducers and Thunk
 Create separate reducers for different models.
 
 Example: pets reducer vs. user reducer
@@ -65,6 +65,13 @@ let setAllPets = (allPets) => {
     payload: allPets
   }
 }
+
+let setInfo = {
+  setAllPets: setAllPets,
+  setUserInfo: setUserInfo
+}
+
+export default connect(null, setInfo)(...)
 ```
 
 Update the pet reducer to account for this new action.
@@ -100,3 +107,6 @@ Update the fetch request for pets.
 * If we're setting information, we need to create an action for it.
 * Then we have to dispatch the action to the reducer.
 * The return value of a reducer becomes the new global state.
+
+## Thunk
+Thunk is React middleware.

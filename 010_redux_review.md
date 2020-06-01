@@ -94,7 +94,7 @@ end
 
 ## Display new info without refreshing the page
 Write a function that dispatches an action.
-* Let's assume that a reducer has already been created.
+* Let's assume that a reducer has already been created in `index.js`.
 
 ```
 const addOnePet = (createdPet) => {
@@ -102,6 +102,10 @@ const addOnePet = (createdPet) => {
     type: "ADD_ONE_PET",
     payload: createdPet
   }
+}
+
+let mapDispatchToProps = {
+  addOnePet: addOnePet
 }
 ```
 
@@ -112,3 +116,31 @@ Update the fetch request to call this function.
   this.props.addOnePet(createdPet)
 })
 ```
+
+## Redux Thunk
+Install the Redux Thunk package and import `thunk` in `index.js`. Also, import `applyMiddleware` from Redux.
+
+```
+import thunk from 'redux-thunk'
+import {createStore, combineReducers, applyMiddleware} from 'redux'
+```
+
+`applyMiddleware` is going to become the second argument in the variable that creates the store.
+
+```
+let store = createStore(rootReducer, applyMiddleware(thunk))
+```
+
+How can we access our Redux dev tools AND thunk in one line?
+
+We need to import another component from Redux.
+
+```
+import {createStore, combineReducers, applyMiddleware, compose} from 'redux'
+
+let store = createStore(rootReducer, 
+  composeEnhancer(applyMiddleware(thunk))
+)
+```
+
+Thunk logs all our state changes and actions. Take advantage of the Redux dev tools.

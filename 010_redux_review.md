@@ -148,9 +148,10 @@ Thunk logs all our state changes and actions. Take advantage of the Redux dev to
 ## Benefits of using Redux Thunk
 * Handles asynchronous bits of code
 * Allows us to move our fetches outside of our component
+* We can reuse actions across multiple components, without having to rewrite fetch requests.
 
 Example:
-Create an action in our pet form that returns a fetch request.
+Create an action in our pet form that returns a fetch request. This function takes in a token and state from a component.
 
 ```
 // PetForm.jsx
@@ -161,10 +162,35 @@ const addOnePet = (createdPet) => {
   }
 }
 
-const fetchAndAddPet = () => {
-  return () => {
+const fetchAndAddPet = (token, stateFromComponent) => {
+  return (dispatch) => {
     // write a fetch request here
+
+    fetch(URL/pets, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "Authorization": token,
+      },
+      body: JSON.stringify(stateFromComponent)
+    })
+    .then(r => r.json())
+    .then((createdPet) => {
+      dispatch({type: "ADD_ONE_PET", payload: createdPet})
+    })
   }
 }
+```
 
+Send this function down as props to use in other components. 
+
+```
+let mapDispatchToProps = {
+  addOnePet: addOnePet,
+  fetchAndAddPet: fetchAndAddPet
+}
+
+...
+
+this.props.fetchAndAddPet(this.props.token, this.state)
 ```

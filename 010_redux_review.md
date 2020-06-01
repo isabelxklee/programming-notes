@@ -92,7 +92,7 @@ end
 
 `authorized` is a method from our users controller that checks if a user has a valid token or not.
 
-## Display new info without refreshing the page
+## Displaying new info without refreshing the page
 Write a function that dispatches an action.
 * Let's assume that a reducer has already been created in `index.js`.
 
@@ -144,3 +144,27 @@ let store = createStore(rootReducer,
 ```
 
 Thunk logs all our state changes and actions. Take advantage of the Redux dev tools.
+
+## Benefits of using Redux Thunk
+* Handles asynchronous bits of code
+* Allows us to move our fetches outside of our component
+
+Example:
+Create an action in our pet form that returns a fetch request.
+
+```
+// PetForm.jsx
+
+const addOnePet = (createdPet) => {
+  return {
+    // type, payload
+  }
+}
+
+const fetchAndAddPet = () => {
+  return () => {
+    // write a fetch request here
+  }
+}
+
+```

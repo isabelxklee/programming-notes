@@ -1,4 +1,6 @@
 # Programming Notes
+If you're interested in learning about React and Redux, here are some notes I wrote!
+
 * Intro to React
 * React Lifecycle
 * React Routes
